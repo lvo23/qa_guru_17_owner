@@ -1,6 +1,7 @@
 package com.lvo23.config;
 
 import org.aeonbits.owner.ConfigFactory;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverProvider;
@@ -21,6 +22,10 @@ public class WebConfigProvider {
         String remoteUrl = config.getRemoteUrl();
         if (remoteUrl != null) {
             Configuration.remote = remoteUrl;
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
         }
     }
 }
